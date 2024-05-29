@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportify_app/utils/constants.dart';
 import 'package:sportify_app/widgets/button.dart';
 import 'package:sportify_app/widgets/form.dart';
 
@@ -26,9 +27,21 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
                   const CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/basketball.jpg'),maxRadius: 40,
+                    radius: 48,
+                    backgroundColor: Constants.primaryColor,
+                    child: CircleAvatar(
+                      backgroundImage:
+                          AssetImage('assets/images/basketball.jpg'),
+                      radius: 45,
+                    ),
                   ),
-                  const Text("Dwi Prasetyanti"),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  const Text(
+                    "Dwi Prasetyanti",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 40),
                   const InputWidget(
                     hintText: "Input your nick name",

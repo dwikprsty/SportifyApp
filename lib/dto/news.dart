@@ -6,7 +6,11 @@ class News {
   String body;
   String photo;
 
-  News({required this.id, required this.title, required this.body, required this.photo}) {
+  News(
+      {required this.id,
+      required this.title,
+      required this.body,
+      required this.photo}) {
     // Validasi URL gambar jika tidak kosong
     if (photo.isNotEmpty) {
       var uri = Uri.parse(photo);

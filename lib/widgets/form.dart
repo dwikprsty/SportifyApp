@@ -8,15 +8,20 @@ class InputWidget extends StatelessWidget {
   final double height;
   final String topLabel;
   final bool obscureText;
-  final Widget? suffixIcon; 
+  final Widget? suffixIcon;
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
 
-  const InputWidget({super.key, 
+  const InputWidget({
+    super.key,
     required this.hintText,
     this.prefixIcon,
     this.height = 48.0,
     this.topLabel = "",
     this.obscureText = false,
-    this.suffixIcon, 
+    this.suffixIcon,
+    this.controller,
+    this.onChanged,
   });
 
   @override
@@ -24,21 +29,21 @@ class InputWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (topLabel.isNotEmpty) 
-          Text(topLabel),
+        if (topLabel.isNotEmpty) Text(topLabel),
         const SizedBox(height: 5.0),
         Container(
           height: ScreenUtil().setHeight(height),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Constants.scaffoldBackgroundColor,
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: TextFormField(
+            controller: controller, // Gunakan controller yang diberikan
             obscureText: obscureText,
             decoration: InputDecoration(
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: Color.fromRGBO(74, 77, 84, 0.2),
+                  color: Constants.secondaryColor,
                 ),
               ),
               focusedBorder: const OutlineInputBorder(
@@ -51,9 +56,10 @@ class InputWidget extends StatelessWidget {
                 fontSize: 14.0,
                 color: Color.fromRGBO(105, 108, 121, 0.7),
               ),
-              prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null, 
-              suffixIcon: suffixIcon, 
+              prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+              suffixIcon: suffixIcon,
             ),
+            onChanged: onChanged,
           ),
         )
       ],
